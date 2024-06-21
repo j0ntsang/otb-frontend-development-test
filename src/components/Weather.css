@@ -16,27 +16,25 @@
 }
 
 .cities-list {
-  gap: 8px;
+  column-gap: 8px;
 }
 
 .button--city {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
+  padding: 10px 24px;
   background-color: var(--weather-unselected-city-background);
-  color: var(--weather-unselected-city-text);
   border-radius: 8px;
+  color: var(--weather-unselected-city-text);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .button--city-selected {
   background-color: var(--weather-selected-city-background);
   color: var(--weather-selected-city-text);
-}
-
-.weather-stats {
-  flex-grow: 1;
-  gap: 8px;
 }
 
 .current-city,
@@ -58,13 +56,13 @@
   padding: 40px;
   background-color: var(--weather-selected-city-background);
   color: var(--weather-selected-city-text);
-  font-size: 64px;
+  font-size: 72px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .current-weather-details {
-  gap: 8px;
+  column-gap: 8px;
 }
 
 .current-temperature-unit,
@@ -76,7 +74,7 @@
 .current-temperature {
   background-color: var(--weather-temperature-background);
   color: var(--weather-temperature-text);
-  font-size: 48px;
+  font-size: 64px;
   font-weight: 700;
 }
 

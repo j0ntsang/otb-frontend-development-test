@@ -2,7 +2,7 @@ import Weather from "../components/Weather";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <main className="flex flex-col p-2">
       <Weather />
     </main>
   );

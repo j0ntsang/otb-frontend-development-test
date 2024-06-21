@@ -72,8 +72,8 @@ const Weather: React.FC = () => {
           })}
         </ul>
       </nav>
-      <div className="weather-stats flex">
-        <section className="current-weather flex flex-col">
+      <div className="weather-stats flex flex-col md:flex-row">
+        <section className="current-weather flex flex-col max-md:mb-2 md:w-2/3 md:mr-2">
           <h1
             className="current-city flex flex-col flex-grow items-center justify-center"
             aria-label={
@@ -91,7 +91,7 @@ const Weather: React.FC = () => {
                   <>&#8212;</>
                 ) : weather ? (
                   <>
-                    {weather.current.temp_c}
+                    {Math.floor(weather.current.temp_c)}
                     <span className="degree-symbol">&#176;</span>
                   </>
                 ) : (
@@ -114,30 +114,34 @@ const Weather: React.FC = () => {
             </h3>
           </div>
         </section>
-        <aside className="forecast flex-grow">
-          <ul className="forecast-list list-none flex flex-col justify-evenly">
+        <aside className="forecast md:w-1/3">
+          <ul className="forecast-list list-none flex md:flex-col justify-evenly">
             {weather?.forecast &&
-              weather.forecast.forecastday.slice(1, 4).map((day) => (
-                <li
-                  key={day.date_epoch}
-                  className="forecast-list-item m-0 p-0 inline-flex flex-col flex-grow items-center justify-center">
-                  <span className="forecast-day">
-                    {new Intl.DateTimeFormat("en-US", {
-                      weekday: "long",
-                    }).format(new Date(day.date_epoch * 1000))}
-                  </span>
-                  <span className="forecast-temperature">
-                    {day.day.maxtemp_c !== null ? (
-                      <>
-                        {day.day.maxtemp_c}
-                        <span className="degree-symbol">&#176;</span>
-                      </>
-                    ) : (
-                      <>&#8212;</>
-                    )}
-                  </span>
-                </li>
-              ))}
+              weather.forecast.forecastday.slice(1, 4).map((day, index) => {
+                const forecastDayLabel = new Intl.DateTimeFormat("en-US", {
+                  weekday: "long",
+                }).format(new Date(day.date_epoch * 1000));
+
+                return (
+                  <li
+                    key={day.date_epoch}
+                    className="forecast-list-item m-0 p-0 inline-flex flex-col flex-grow items-center justify-center">
+                    <span className="forecast-day">
+                      {index === 0 ? "Tomorrow" : forecastDayLabel}
+                    </span>
+                    <span className="forecast-temperature">
+                      {day.day.maxtemp_c !== null ? (
+                        <>
+                          {Math.floor(day.day.maxtemp_c)}
+                          <span className="degree-symbol">&#176;</span>
+                        </>
+                      ) : (
+                        <>&#8212;</>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
           </ul>
         </aside>
       </div>
