@@ -32,10 +32,6 @@ const Weather = () => {
     fetchWeather(city);
   }, [city]);
 
-  useEffect(() => {
-    console.log(weather);
-  }, [weather]);
-
   return (
     <div className="weather-app flex flex-col">
       <nav className="cities">
