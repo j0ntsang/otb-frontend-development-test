@@ -1,0 +1,119 @@
+:root {
+  --weather-unselected-city-background: #e0ded7;
+  --weather-unselected-city-text: #000000;
+  --weather-selected-city-background: #000000;
+  --weather-selected-city-text: #ffffff;
+  --weather-temperature-background: #55b9be;
+  --weather-temperature-text: #ffffff;
+  --weather-condition-background: #5fc67a;
+  --weather-condition-text: #ffffff;
+  --weather-forecast-background: #e0ded7;
+  --weather-forecast-text: #000000;
+}
+
+.weather-app {
+  gap: 8px;
+}
+
+.cities-list {
+  gap: 8px;
+}
+
+.button--city {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: var(--weather-unselected-city-background);
+  color: var(--weather-unselected-city-text);
+  border-radius: 8px;
+}
+
+.button--city-selected {
+  background-color: var(--weather-selected-city-background);
+  color: var(--weather-selected-city-text);
+}
+
+.weather-stats {
+  flex-grow: 1;
+  gap: 8px;
+}
+
+.current-city,
+.current-temperature,
+.current-condition {
+  padding: 24px;
+  line-height: 1;
+  border-radius: 8px;
+}
+
+.current-temperature,
+.current-condition {
+  max-width: 50%;
+  flex: 1 1 50%;
+}
+
+.current-city {
+  margin-bottom: 8px;
+  padding: 24px 40px;
+  background-color: var(--weather-selected-city-background);
+  color: var(--weather-selected-city-text);
+  font-size: 64px;
+  font-weight: 700;
+}
+
+.current-weather-details {
+  gap: 8px;
+}
+
+.current-temperature-unit,
+.current-condition-icon {
+  margin-bottom: 16px;
+}
+
+.current-temperature {
+  background-color: var(--weather-temperature-background);
+  color: var(--weather-temperature-text);
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.current-condition {
+  background-color: var(--weather-condition-background);
+  color: var(--weather-condition-text);
+}
+
+.forecast {
+  background-color: var(--weather-forecast-background);
+  border-radius: 8px;
+  color: var(--weather-forecast-text);
+}
+
+.forecast-list {
+  height: 100%;
+}
+
+.forecast-list-item {
+  padding: 16px;
+}
+
+.forecast-day {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.forecast-temperature {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.subheading {
+  margin-top: auto;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+}
