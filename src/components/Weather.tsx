@@ -2,20 +2,38 @@
 
 import { useEffect, useState } from "react";
 
-import { CITY_WEATHER_LIST } from "../constants.js";
+import { CITY_WEATHER_LIST } from "../constants";
 import axios from "axios";
 import classNames from "classnames";
 import styles from "./Weather.css";
 
 const cx = classNames.bind(styles);
 
-const Weather = () => {
-  const [city, setCity] = useState("Tokyo");
-  const [weather, setWeather] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+interface WeatherData {
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+      icon: string;
+    };
+  };
+  forecast: {
+    forecastday: Array<{
+      date_epoch: number;
+      day: {
+        maxtemp_c: number;
+      };
+    }>;
+  };
+}
 
-  const fetchWeather = async (city) => {
+const Weather: React.FC = () => {
+  const [city, setCity] = useState<string>("Tokyo");
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const fetchWeather = async (city: string) => {
     try {
       const response = await axios.get(`/api/weather`, {
         params: { city },
@@ -26,6 +44,7 @@ const Weather = () => {
     } catch (err) {
       setWeather(null);
       setError("Error fetching weather data");
+      setIsLoading(false);
     }
   };
 
@@ -108,8 +127,14 @@ const Weather = () => {
                     }).format(new Date(day.date_epoch * 1000))}
                   </span>
                   <span className="forecast-temperature">
-                    {day.day.maxtemp_c ? day.day.maxtemp_c : <>&#8212;</>}
-                    <span className="degree-symbol">&#176;</span>
+                    {day.day.maxtemp_c !== null ? (
+                      <>
+                        {day.day.maxtemp_c}
+                        <span className="degree-symbol">&#176;</span>
+                      </>
+                    ) : (
+                      <>&#8212;</>
+                    )}
                   </span>
                 </li>
               ))}

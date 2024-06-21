@@ -1,6 +1,11 @@
+import { NextApiRequest, NextApiResponse } from "next";
+
 import axios from "axios";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { city } = req.query;
   const apiKey = "cd8e598e87c24262b3831328210203";
 
