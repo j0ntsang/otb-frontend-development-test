@@ -1,12 +1,13 @@
 "use client";
 
-import "./Weather.css";
-
 import { useEffect, useState } from "react";
 
+import { CITY_WEATHER_LIST } from "../constants.js";
 import axios from "axios";
+import classNames from "classnames";
+import styles from "./Weather.css";
 
-const cityOptions = ["Tokyo", "New York", "Moscow"];
+const cx = classNames.bind(styles);
 
 const Weather = () => {
   const [city, setCity] = useState("Tokyo");
@@ -36,12 +37,16 @@ const Weather = () => {
     <div className="weather-app flex flex-col">
       <nav className="cities">
         <ul className="cities-list list-none flex">
-          {cityOptions.map((city) => {
-            const buttonClasses = ["button--city-selected"];
+          {CITY_WEATHER_LIST.map((cityName) => {
+            const buttonClasses = cx("button--city", {
+              "button--city-selected": city === cityName,
+            });
             return (
-              <li key={city} className="cities-list-item">
-                <button className={buttonClasses} onClick={() => setCity(city)}>
-                  {city}
+              <li key={cityName} className="cities-list-item">
+                <button
+                  className={buttonClasses}
+                  onClick={() => setCity(cityName)}>
+                  {cityName}
                 </button>
               </li>
             );
@@ -52,7 +57,11 @@ const Weather = () => {
         <section className="current-weather flex flex-col">
           <h1
             className="current-city flex flex-col flex-grow items-center justify-center"
-            aria-label="It is currently [CONDITION] in [CITY] at [TEMPERATURE] degrees"
+            aria-label={
+              weather
+                ? `It is currently ${weather.current.condition.text} in ${city} at ${weather.current.temp_c} degrees`
+                : ""
+            }
             aria-live="polite">
             {city}
           </h1>
@@ -89,7 +98,7 @@ const Weather = () => {
         <aside className="forecast flex-grow">
           <ul className="forecast-list list-none flex flex-col justify-evenly">
             {weather?.forecast &&
-              weather.forecast.forecastday.slice(1).map((day, index) => (
+              weather.forecast.forecastday.slice(1, 4).map((day) => (
                 <li
                   key={day.date_epoch}
                   className="forecast-list-item m-0 p-0 inline-flex flex-col flex-grow items-center justify-center">
