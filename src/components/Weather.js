@@ -12,6 +12,7 @@ const Weather = () => {
   const [city, setCity] = useState("Tokyo");
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchWeather = async (city) => {
     try {
@@ -19,6 +20,7 @@ const Weather = () => {
         params: { city },
       });
       setWeather(response.data);
+      setIsLoading(false);
       setError(null);
     } catch (err) {
       setWeather(null);
@@ -61,15 +63,28 @@ const Weather = () => {
           <div className="current-weather-details flex justify-evenly">
             <h2 className="current-temperature inline-flex flex-col items-center justify-center">
               <span className="current-temperature-unit">
-                {weather ? weather.current.temp_c : ""}
-                <span className="degree-symbol">&#176;</span>
+                {isLoading ? (
+                  <>&#8212;</>
+                ) : weather ? (
+                  <>
+                    {weather.current.temp_c}
+                    <span className="degree-symbol">&#176;</span>
+                  </>
+                ) : (
+                  ""
+                )}
               </span>
               <span className="subheading">Current</span>
             </h2>
             <h3 className="current-condition inline-flex flex-col  items-center justify-center">
-              <span className="current-condition-icon"></span>
+              <span className="current-condition-icon">
+                <img
+                  className="current-condition-image"
+                  src={weather ? weather.current.condition.icon : ""}
+                  alt=""
+                />
+              </span>
               <span className="subheading">
-                CONDITION
                 {weather ? weather.current.condition.text : ""}
               </span>
             </h3>
@@ -88,7 +103,7 @@ const Weather = () => {
                     }).format(new Date(day.date_epoch * 1000))}
                   </span>
                   <span className="forecast-temperature">
-                    {day.day.maxtemp_c}
+                    {day.day.maxtemp_c ? day.day.maxtemp_c : <>&#8212;</>}
                     <span className="degree-symbol">&#176;</span>
                   </span>
                 </li>

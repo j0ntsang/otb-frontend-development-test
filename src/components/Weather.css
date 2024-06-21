@@ -55,11 +55,12 @@
 
 .current-city {
   margin-bottom: 8px;
-  padding: 24px 40px;
+  padding: 40px;
   background-color: var(--weather-selected-city-background);
   color: var(--weather-selected-city-text);
   font-size: 64px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .current-weather-details {
@@ -68,6 +69,7 @@
 
 .current-temperature-unit,
 .current-condition-icon {
+  margin-top: auto;
   margin-bottom: 16px;
 }
 
@@ -81,6 +83,11 @@
 .current-condition {
   background-color: var(--weather-condition-background);
   color: var(--weather-condition-text);
+}
+
+.current-condition-image {
+  width: auto;
+  height: 120px;
 }
 
 .forecast {
