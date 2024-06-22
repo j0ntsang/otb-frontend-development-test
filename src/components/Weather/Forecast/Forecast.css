@@ -11,14 +11,26 @@
 
 .forecast-day {
   display: block;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
+@media (min-width: 768px) {
+  .forecast-day {
+    font-size: 20px;
+  }
+}
+
 .forecast-temperature {
   position: relative;
-  font-size: 54px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .forecast-temperature {
+    font-size: 54px;
+  }
 }

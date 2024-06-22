@@ -22,10 +22,16 @@
   background-color: var(--weather-unselected-city-background);
   border-radius: 8px;
   color: var(--weather-unselected-city-text);
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
   text-wrap: nowrap;
+}
+
+@media (min-width: 768px) {
+  .button--city {
+    font-size: 36px;
+  }
 }
 
 .button--city-selected {

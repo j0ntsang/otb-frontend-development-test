@@ -19,7 +19,7 @@ const Forecast: React.FC<ForecastProps> = ({ weather }) => {
             return (
               <li
                 key={day.date_epoch}
-                className="forecast-list-item m-0 [&:not(:last-child)]:md:mb-10 p-0 inline-flex flex-col flex-grow items-center justify-center">
+                className="forecast-list-item w-1/3 md:w-full m-0 [&:not(:last-child)]:md:mb-10 p-0 inline-flex flex-col flex-grow items-center justify-center">
                 <span className="forecast-day mb-2">
                   {index === 0 ? "Tomorrow" : forecastDayLabel}
                 </span>
