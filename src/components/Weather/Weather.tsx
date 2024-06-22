@@ -1,13 +1,11 @@
 "use client";
 
+import "./Weather.css";
+
 import { useEffect, useState } from "react";
 
-import { CITY_WEATHER_LIST } from "../../constants";
+import CityOptions from "./CityOptions/CityOptions";
 import axios from "axios";
-import classNames from "classnames";
-import styles from "./Weather.css";
-
-const cx = classNames.bind(styles);
 
 interface WeatherData {
   current: {
@@ -54,24 +52,7 @@ const Weather: React.FC = () => {
 
   return (
     <div className="weather-app flex flex-col">
-      <nav className="cities">
-        <ul className="cities-list list-none flex">
-          {CITY_WEATHER_LIST.map((cityName) => {
-            const buttonClasses = cx("button--city", {
-              "button--city-selected": city === cityName,
-            });
-            return (
-              <li key={cityName} className="cities-list-item">
-                <button
-                  className={buttonClasses}
-                  onClick={() => setCity(cityName)}>
-                  {cityName}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <CityOptions setCity={setCity} city={city} />
       <div className="weather-stats flex flex-col md:flex-row">
         <section className="current-weather flex flex-col max-md:mb-4 md:w-3/4 md:mr-4">
           <h1
