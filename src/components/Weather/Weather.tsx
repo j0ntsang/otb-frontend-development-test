@@ -1,13 +1,17 @@
 "use client";
 
-import "./Weather.css";
-
 import { useEffect, useState } from "react";
 
 import CityOptions from "./CityOptions/CityOptions";
+import CurrentWeather from "./CurrentWeather/CurrentWeather";
 import Forecast from "./Forecast/Forecast";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { WeatherData } from "./types";
 import axios from "axios";
+import classNames from "classnames";
+import styles from "./Weather.css";
+
+const cx = classNames.bind(styles);
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState<string>("Tokyo");
@@ -34,54 +38,36 @@ const Weather: React.FC = () => {
     fetchWeather(city);
   }, [city]);
 
+  interface CurrentWeatherProps {
+    city: string;
+    weather: WeatherData;
+  }
+
+  const WeatherDetails: React.FC<CurrentWeatherProps> = ({ city, weather }) => {
+    return (
+      <>
+        <CurrentWeather city={city} weather={weather} />
+        <Forecast weather={weather} />
+      </>
+    );
+  };
+
+  const containerClasses = cx([
+    "weather-app-container flex flex-col md:flex-row",
+    {
+      "items-center justify-center": isLoading,
+    },
+  ]);
+
   return (
     <div className="weather-app flex flex-col">
       <CityOptions setCity={setCity} city={city} />
-      <div className="weather-stats flex flex-col md:flex-row">
-        <section className="current-weather flex flex-col max-md:mb-4 md:w-3/4 md:mr-4">
-          <h1
-            className="current-city flex flex-col flex-grow items-center justify-center"
-            aria-label={
-              weather
-                ? `It is currently ${weather.current.condition.text} in ${city} at ${weather.current.temp_c} degrees`
-                : "Loading weather data"
-            }
-            aria-live="polite">
-            {city}
-          </h1>
-          <div className="current-weather-details flex justify-evenly">
-            <h2 className="current-temperature inline-flex flex-col items-center justify-center w-1/2">
-              <span className="current-temperature-unit">
-                {isLoading ? (
-                  <>&#8212;</>
-                ) : weather ? (
-                  <>
-                    {Math.floor(weather.current.temp_c)}
-                    <span className="degree-symbol">&#176;</span>
-                  </>
-                ) : (
-                  ""
-                )}
-              </span>
-              <span className="subheading">Current</span>
-            </h2>
-            <h3 className="current-condition inline-flex flex-col items-center justify-center w-1/2">
-              <span className="current-condition-icon">
-                {weather && (
-                  <img
-                    className="current-condition-image"
-                    src={weather.current.condition.icon}
-                    alt={weather.current.condition.text}
-                  />
-                )}
-              </span>
-              <span className="subheading">
-                {weather ? weather.current.condition.text : ""}
-              </span>
-            </h3>
-          </div>
-        </section>
-        {weather && <Forecast weather={weather} />}
+      <div className={containerClasses}>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          weather && <WeatherDetails city={city} weather={weather} />
+        )}
       </div>
       {error && <div className="error-message">{error}</div>}
     </div>

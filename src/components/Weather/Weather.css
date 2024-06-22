@@ -22,57 +22,6 @@
   }
 }
 
-.current-city,
-.current-temperature,
-.current-condition {
-  padding: 40px;
-  line-height: 1;
-  border-radius: 8px;
-}
-
-.current-temperature,
-.current-condition {
-  text-wrap: nowrap;
-}
-
-.current-city {
-  margin-bottom: 16px;
-  padding: 32px;
-  background-color: var(--weather-selected-city-background);
-  color: var(--weather-selected-city-text);
-  font-size: 80px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.current-weather-details {
-  column-gap: 16px;
-}
-
-.current-temperature-unit,
-.current-condition-icon {
-  margin-bottom: 16px;
-}
-
-.current-temperature {
-  background-color: var(--weather-temperature-background);
-  color: var(--weather-temperature-text);
-  font-size: 64px;
-  font-weight: 700;
-}
-
-.current-condition {
-  background-color: var(--weather-condition-background);
-  color: var(--weather-condition-text);
-}
-
-.current-condition-image {
-  width: 100%;
-}
-
-.subheading {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.1px;
-  text-transform: uppercase;
+.weather-app-container {
+  min-height: 300px;
 }
