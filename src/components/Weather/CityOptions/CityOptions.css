@@ -1,0 +1,34 @@
+.cities {
+  overflow-x: scroll;
+}
+
+.cities-list {
+  column-gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .cities-list-item {
+    flex: 1 1 auto;
+    max-width: 33.33333%;
+  }
+}
+
+.button--city {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  background-color: var(--weather-unselected-city-background);
+  border-radius: 8px;
+  color: var(--weather-unselected-city-text);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+.button--city-selected {
+  background-color: var(--weather-selected-city-background);
+  color: var(--weather-selected-city-text);
+}

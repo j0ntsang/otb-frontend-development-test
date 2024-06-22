@@ -5,25 +5,9 @@ import "./Weather.css";
 import { useEffect, useState } from "react";
 
 import CityOptions from "./CityOptions/CityOptions";
+import Forecast from "./Forecast/Forecast";
+import { WeatherData } from "./types";
 import axios from "axios";
-
-interface WeatherData {
-  current: {
-    temp_c: number;
-    condition: {
-      text: string;
-      icon: string;
-    };
-  };
-  forecast: {
-    forecastday: Array<{
-      date_epoch: number;
-      day: {
-        maxtemp_c: number;
-      };
-    }>;
-  };
-}
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState<string>("Tokyo");
@@ -33,7 +17,7 @@ const Weather: React.FC = () => {
 
   const fetchWeather = async (city: string) => {
     try {
-      const response = await axios.get(`/api/weather`, {
+      const response = await axios.get<WeatherData>(`/api/weather`, {
         params: { city },
       });
       setWeather(response.data);
@@ -60,7 +44,7 @@ const Weather: React.FC = () => {
             aria-label={
               weather
                 ? `It is currently ${weather.current.condition.text} in ${city} at ${weather.current.temp_c} degrees`
-                : ""
+                : "Loading weather data"
             }
             aria-live="polite">
             {city}
@@ -83,11 +67,13 @@ const Weather: React.FC = () => {
             </h2>
             <h3 className="current-condition inline-flex flex-col items-center justify-center w-1/2">
               <span className="current-condition-icon">
-                <img
-                  className="current-condition-image"
-                  src={weather ? weather.current.condition.icon : ""}
-                  alt=""
-                />
+                {weather && (
+                  <img
+                    className="current-condition-image"
+                    src={weather.current.condition.icon}
+                    alt={weather.current.condition.text}
+                  />
+                )}
               </span>
               <span className="subheading">
                 {weather ? weather.current.condition.text : ""}
@@ -95,37 +81,9 @@ const Weather: React.FC = () => {
             </h3>
           </div>
         </section>
-        <aside className="forecast md:w-1/4">
-          <ul className="forecast-list list-none flex md:flex-col justify-evenly">
-            {weather?.forecast &&
-              weather.forecast.forecastday.slice(1, 4).map((day, index) => {
-                const forecastDayLabel = new Intl.DateTimeFormat("en-US", {
-                  weekday: "long",
-                }).format(new Date(day.date_epoch * 1000));
-
-                return (
-                  <li
-                    key={day.date_epoch}
-                    className="forecast-list-item m-0 [&:not(:last-child)]:md:mb-10 p-0 inline-flex flex-col flex-grow items-center justify-center">
-                    <span className="forecast-day mb-2">
-                      {index === 0 ? "Tomorrow" : forecastDayLabel}
-                    </span>
-                    <span className="forecast-temperature">
-                      {day.day.maxtemp_c !== null ? (
-                        <>
-                          {Math.floor(day.day.maxtemp_c)}
-                          <span className="degree-symbol">&#176;</span>
-                        </>
-                      ) : (
-                        <>&#8212;</>
-                      )}
-                    </span>
-                  </li>
-                );
-              })}
-          </ul>
-        </aside>
+        {weather && <Forecast weather={weather} />}
       </div>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

@@ -1,0 +1,23 @@
+.forecast {
+  background-color: var(--weather-forecast-background);
+  border-radius: 8px;
+  color: var(--weather-forecast-text);
+}
+
+.forecast-list {
+  height: 100%;
+  padding: 40px 16px;
+}
+
+.forecast-day {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.forecast-temperature {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+}
