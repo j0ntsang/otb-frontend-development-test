@@ -16,9 +16,15 @@
   padding: 32px;
   background-color: var(--weather-selected-city-background);
   color: var(--weather-selected-city-text);
-  font-size: 80px;
+  font-size: 72px;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .current-city {
+    font-size: 80px;
+  }
 }
 
 .current-weather-details {
@@ -28,6 +34,10 @@
 .current-temperature-unit,
 .current-condition-icon {
   margin-bottom: 16px;
+}
+
+.current-temperature-unit {
+  position: relative;
 }
 
 .current-temperature {
@@ -44,6 +54,8 @@
 
 .current-condition-image {
   width: 100%;
+  min-width: 64px;
+  min-height: 64px;
 }
 
 .subheading {

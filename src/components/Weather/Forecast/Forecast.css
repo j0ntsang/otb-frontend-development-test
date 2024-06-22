@@ -17,6 +17,7 @@
 }
 
 .forecast-temperature {
+  position: relative;
   font-size: 54px;
   font-weight: 700;
   line-height: 1;

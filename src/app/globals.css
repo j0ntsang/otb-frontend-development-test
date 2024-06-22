@@ -19,3 +19,10 @@ body {
     text-wrap: balance;
   }
 }
+
+.degree-symbol {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  font-size: 40px;
+}
