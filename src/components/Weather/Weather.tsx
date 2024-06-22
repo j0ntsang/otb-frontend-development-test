@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { CITY_WEATHER_LIST } from "../constants";
+import { CITY_WEATHER_LIST } from "../../constants";
 import axios from "axios";
 import classNames from "classnames";
 import styles from "./Weather.css";
