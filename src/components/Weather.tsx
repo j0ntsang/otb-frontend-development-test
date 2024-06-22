@@ -73,7 +73,7 @@ const Weather: React.FC = () => {
         </ul>
       </nav>
       <div className="weather-stats flex flex-col md:flex-row">
-        <section className="current-weather flex flex-col max-md:mb-2 md:w-2/3 md:mr-2">
+        <section className="current-weather flex flex-col max-md:mb-4 md:w-3/4 md:mr-4">
           <h1
             className="current-city flex flex-col flex-grow items-center justify-center"
             aria-label={
@@ -100,7 +100,7 @@ const Weather: React.FC = () => {
               </span>
               <span className="subheading">Current</span>
             </h2>
-            <h3 className="current-condition inline-flex flex-col  items-center justify-center">
+            <h3 className="current-condition inline-flex flex-col items-center justify-center">
               <span className="current-condition-icon">
                 <img
                   className="current-condition-image"
@@ -114,7 +114,7 @@ const Weather: React.FC = () => {
             </h3>
           </div>
         </section>
-        <aside className="forecast md:w-1/3">
+        <aside className="forecast md:w-1/4">
           <ul className="forecast-list list-none flex md:flex-col justify-evenly">
             {weather?.forecast &&
               weather.forecast.forecastday.slice(1, 4).map((day, index) => {
@@ -125,8 +125,8 @@ const Weather: React.FC = () => {
                 return (
                   <li
                     key={day.date_epoch}
-                    className="forecast-list-item m-0 p-0 inline-flex flex-col flex-grow items-center justify-center">
-                    <span className="forecast-day">
+                    className="forecast-list-item m-0 [&:not(:last-child)]:md:mb-10 p-0 inline-flex flex-col flex-grow items-center justify-center">
+                    <span className="forecast-day mb-2">
                       {index === 0 ? "Tomorrow" : forecastDayLabel}
                     </span>
                     <span className="forecast-temperature">

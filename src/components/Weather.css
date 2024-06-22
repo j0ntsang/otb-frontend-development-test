@@ -12,24 +12,34 @@
 }
 
 .weather-app {
-  gap: 8px;
+  gap: 16px;
 }
 
 .cities-list {
-  column-gap: 8px;
+  column-gap: 16px;
+  overflow-x: scroll;
+}
+
+@media (min-width: 768px) {
+  .cities-list-item {
+    flex: 1 1 auto;
+    max-width: 33.33333%;
+  }
 }
 
 .button--city {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
+  width: 100%;
+  padding: 16px 24px;
   background-color: var(--weather-unselected-city-background);
   border-radius: 8px;
   color: var(--weather-unselected-city-text);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
   text-transform: uppercase;
+  text-wrap: nowrap;
 }
 
 .button--city-selected {
@@ -40,7 +50,7 @@
 .current-city,
 .current-temperature,
 .current-condition {
-  padding: 24px;
+  padding: 40px;
   line-height: 1;
   border-radius: 8px;
 }
@@ -49,25 +59,25 @@
 .current-condition {
   max-width: 50%;
   flex: 1 1 50%;
+  text-wrap: nowrap;
 }
 
 .current-city {
-  margin-bottom: 8px;
-  padding: 40px;
+  margin-bottom: 16px;
+  padding: 32px;
   background-color: var(--weather-selected-city-background);
   color: var(--weather-selected-city-text);
-  font-size: 72px;
+  font-size: 80px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .current-weather-details {
-  column-gap: 8px;
+  column-gap: 16px;
 }
 
 .current-temperature-unit,
 .current-condition-icon {
-  margin-top: auto;
   margin-bottom: 16px;
 }
 
@@ -84,8 +94,14 @@
 }
 
 .current-condition-image {
-  width: auto;
-  height: 120px;
+  width: 100%;
+}
+
+.subheading {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
 }
 
 .forecast {
@@ -96,29 +112,18 @@
 
 .forecast-list {
   height: 100%;
-}
-
-.forecast-list-item {
-  padding: 16px;
+  padding: 40px 16px;
 }
 
 .forecast-day {
   display: block;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .forecast-temperature {
-  font-size: 32px;
+  font-size: 54px;
   font-weight: 700;
-}
-
-.subheading {
-  margin-top: auto;
-  margin-bottom: 0;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.1px;
-  text-transform: uppercase;
+  line-height: 1;
 }
