@@ -85,7 +85,7 @@ const Weather: React.FC = () => {
             {city}
           </h1>
           <div className="current-weather-details flex justify-evenly">
-            <h2 className="current-temperature inline-flex flex-col items-center justify-center">
+            <h2 className="current-temperature inline-flex flex-col items-center justify-center w-1/2">
               <span className="current-temperature-unit">
                 {isLoading ? (
                   <>&#8212;</>
@@ -100,7 +100,7 @@ const Weather: React.FC = () => {
               </span>
               <span className="subheading">Current</span>
             </h2>
-            <h3 className="current-condition inline-flex flex-col items-center justify-center">
+            <h3 className="current-condition inline-flex flex-col items-center justify-center w-1/2">
               <span className="current-condition-icon">
                 <img
                   className="current-condition-image"

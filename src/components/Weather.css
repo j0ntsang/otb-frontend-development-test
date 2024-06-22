@@ -12,12 +12,22 @@
 }
 
 .weather-app {
+  width: 100%;
   gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .weather-app {
+    max-width: 768px;
+  }
+}
+
+.cities {
+  overflow-x: scroll;
 }
 
 .cities-list {
   column-gap: 16px;
-  overflow-x: scroll;
 }
 
 @media (min-width: 768px) {
@@ -57,8 +67,6 @@
 
 .current-temperature,
 .current-condition {
-  max-width: 50%;
-  flex: 1 1 50%;
   text-wrap: nowrap;
 }
 
