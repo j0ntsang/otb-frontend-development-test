@@ -18,7 +18,7 @@ export default async function handler(
       params: {
         key: WEATHER_API_KEY,
         q: city,
-        days: 5,
+        days: 4,
       },
     });
     res.status(200).json(response.data);

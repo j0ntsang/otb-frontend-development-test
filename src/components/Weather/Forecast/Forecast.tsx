@@ -11,7 +11,7 @@ const Forecast: React.FC<ForecastProps> = ({ weather }) => {
     <aside className="forecast md:w-1/4">
       <ul className="forecast-list list-none flex md:flex-col justify-evenly">
         {weather?.forecast &&
-          weather.forecast.forecastday.slice(1, 4).map((day, index) => {
+          weather.forecast.forecastday.slice(1).map((day, index) => {
             const forecastDayLabel = new Intl.DateTimeFormat("en-US", {
               weekday: "long",
             }).format(new Date(day.date_epoch * 1000));
